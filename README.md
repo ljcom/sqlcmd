@@ -15,7 +15,7 @@ then will running migration container to restore or create your database.
 
 sqlcmd is made using node.js
 
-You are welcome to fork or add any features.
+You are welcome to fork or pull request to fix/add any features.
 
   node index.js -S:mssql -U:sa -P:Passw0rd -D:master -C -N -i:restore.sql
 
