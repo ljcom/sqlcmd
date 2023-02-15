@@ -11,7 +11,7 @@ then will running migration container to restore or create your database.
 ## dockerfile:
 - change restore.sql with filldata.sql depend on yoour purpose.
 
-## sqlcmd
+## sqlcmd:
 
 sqlcmd is made using node.js
 
