@@ -9,7 +9,8 @@ First it will install sql server
 then will running migration container to restore or create your database.
 
 ## dockerfile:
-- change restore.sql with filldata.sql depend on yoour purpose.
+- change restore.sql with filldata.sql depend on your purpose.
+- database for restore is not included. Please put yours.
 
 ## sqlcmd:
 
