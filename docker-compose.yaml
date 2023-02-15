@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mssql:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    user: root
+    command: /opt/mssql/bin/sqlservr
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "SA_Passw0rd"
+    stdin_open: true
+    ports:
+      - 1433:1433
+    networks:
+      - db_net
+    volumes:
+      - source:/var/opt/mssql/source
+      #- ./data:/var/opt/mssql/data
+    
+  migrate:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: migrate:onetimeonly
+    container_name: mssql_migrate
+    depends_on:
+      mssql:
+        condition: service_started
+    # image: mcr.microsoft.com/mssql-tools:latest
+    # command: /opt/mssql_scripts/run-initialization.sh
+    # stdin_open: true
+    networks:
+      - db_net
+    volumes:
+      - source:/var/opt/mssql/source
+      #- /var/opt/mssql/data:/var/opt/mssql/data
+
+networks:
+  db_net:
+    name: db_net
+
+volumes:
+  source:
+  #data:
+  
